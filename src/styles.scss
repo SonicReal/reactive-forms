@@ -1,0 +1,181 @@
+/* You can add global styles to this file, and also import other style files */
+
+$main-color: #1b4ca4;
+$bad-color: #f97480;
+$green: #25be58;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: darken($main-color, 10%);
+  background-image: -moz-linear-gradient(45deg, $main-color 25%, transparent 25%),
+  -moz-linear-gradient(-45deg, $main-color 25%, transparent 25%),
+  -moz-linear-gradient(45deg, transparent 75%, $main-color 75%),
+  -moz-linear-gradient(-45deg, transparent 75%, $main-color 75%);
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, $main-color), color-stop(.25, transparent)),
+  -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, $main-color), color-stop(.25, transparent)),
+  -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, $main-color)),
+  -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, $main-color));
+
+  -moz-background-size: 100px 100px;
+  background-size: 100px 100px;
+  -webkit-background-size: 100px 101px; /* override value for shitty webkit */
+  min-height: 100%;
+  background-position: 0 0, 50px 0, 50px -50px, 0px 50px;
+}
+
+
+.error {
+  color: $bad-color;
+  font-size: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 12px;
+  background: $green;
+  padding: 16px 32px;
+  width: 100%;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: darken($green, 10%);
+  }
+}
+
+button {
+  background: $main-color;
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: darken($main-color, 10%);
+  }
+}
+
+
+.push {
+  &-top-little {
+    margin-top: 8px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-bottom-little {
+    margin-bottom: 8px;
+  }
+
+  &-top {
+    margin-top: 32px;
+  }
+}
+
+.remove-button {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  font-size: 10px;
+  color: $bad-color;
+  cursor: pointer;
+
+}
+
+.existing-character {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid darken(white, 10%);
+    margin-right: 12px;
+  }
+
+  margin-bottom: 32px;
+}
+
+input[type='text'], input[type='number'], textarea {
+  width: 100%;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 1px solid darken(white, 10%);
+  transition: 0.3s;
+
+  &:focus {
+    border-color: $main-color;
+    outline: none;
+  }
+}
+
+textarea{
+  min-height: 100px;
+  resize: none;
+}
+
+label {
+  color: $main-color;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.checkbox-option {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-right: 12px;
+  }
+
+  .header {
+    color: $main-color;
+    font-size: 12px;
+
+  }
+}
+input[type="file"] {
+  margin-top: 12px;
+}
+
+.skill {
+  &:not(:first-child) {
+    margin-top: 4px;
+  }
+}
+
+.create-character-wrap {
+  margin: auto;
+  min-height: 600px;
+  border-radius: 6px;
+  background: white;
+  padding: 32px;
+}
+
+.input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.errors-container {
+  position: absolute;
+  top: calc(100%);
+  left: 0;
+  >*{
+    color:red;
+    font-size: 10px;
+  }
+}

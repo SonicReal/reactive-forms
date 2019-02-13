@@ -1,0 +1,70 @@
+<div class="create-character-wrap">
+
+  <div class="existing-character" *ngIf="current$|async as character">
+    <ng-container *ngIf="character.avatar">
+      <img [src]="character.avatar.file?.src || '/assets/img/no-avatar.jpg'">
+      <div class="name">{{character.name}}</div>
+    </ng-container>
+  </div>
+
+  <form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
+
+    <label>Имя</label>
+    <div class="input-wrap" *ngIf="characterForm.get('name') as name">
+      <input type="text" formControlName="name">
+      <div class="errors-container" *ngIf="name.dirty && name.errors as errors">
+        <div *ngIf="errors.required">Обязательное поле</div>
+        <div *ngIf="errors.minlength as error">Минимум {{error.requiredLength}} cимвола</div>
+      </div>
+    </div>
+
+    <label>Возраст</label>
+    <div class="input-wrap" *ngIf="characterForm.get('age') as age">
+      <input type="number" formControlName="age">
+      <div class="errors-container" *ngIf="age.dirty && age.errors as errors">
+        <div *ngIf="errors.required">Обязательное поле</div>
+        <div *ngIf="errors.min as error">Минимум {{error.min}}</div>
+        <div *ngIf="errors.max as error">Максимум {{error.max}}</div>
+      </div>
+    </div>
+
+    <label>Описание</label>
+    <div class="input-wrap">
+      <textarea formControlName="description"></textarea>
+      <div class="errors-container">
+      </div>
+    </div>
+
+    <div formArrayName="skills">
+      <div *ngFor="let control of skills.controls;let i = index;">
+
+        <label>Умение {{i + 1}}</label>
+        <div class="input-wrap">
+          <input type="text" [formControlName]="i">
+          <div class="remove-button" (click)="removeSkill(i)">Удалить</div>
+          <div class="errors-container" *ngIf="control.dirty && control.errors as errors">
+            <div *ngIf="errors.required">Обязательное поле</div>
+          </div>
+        </div>
+
+      </div>
+      <button type="button" (click)="addSkill()">Добавить умение</button>
+    </div>
+
+    <ng-container *ngIf="!(current$|async)">
+    <div formGroupName="avatar">
+      <div class="checkbox-option">
+        <input formControlName="has_avatar" type="checkbox">
+        <label>У меня есть аватар</label>
+      </div>
+      <ng-container *ngIf="avatar.get('has_avatar').value">
+        <input type="file" (change)="onFileSelect($event)">
+        <div class="error" *ngIf="avatar.get('file').dirty && avatar.errors as errors">
+          <div *ngIf="errors.avatarRequired as error">{{error}}</div>
+        </div>
+      </ng-container>
+    </div>
+    </ng-container>
+    <button type="submit">Готово</button>
+  </form>
+</div>

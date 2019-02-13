@@ -1,0 +1,7 @@
+@import "~src/styles";
+
+input, textarea {
+  &.ng-invalid.ng-dirty {
+    border-color: $bad-color;
+  }
+}

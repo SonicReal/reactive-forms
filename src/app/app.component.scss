@@ -1,0 +1,23 @@
+@import "~src/styles.scss";
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+}
+
+.wrap {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  box-sizing: border-box;
+
+  sonic-create-character {
+    flex: 0 0 400px;
+  }
+
+  sonic-characters-list {
+    flex: 1 0 20px;
+  }
+}

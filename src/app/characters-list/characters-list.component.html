@@ -1,0 +1,19 @@
+<div class="character"
+     [class.active]="(current$|async)===character"
+     *ngFor="let character of characters$|async" (click)="select(character)">
+  <div class="name">{{character.name}}, {{character.age}}</div>
+  <ng-container *ngIf="character.avatar.file as avatar; else noAvatar">
+    <img class="avatar" [src]="avatar.src">
+  </ng-container>
+  <div class="description" *ngIf="character.description">
+    {{character.description}}
+  </div>
+  <div class="skills">
+    <div *ngFor="let skill of character.skills">{{skill}}</div>
+  </div>
+</div>
+
+
+<ng-template #noAvatar>
+  <img class="avatar" src="/assets/img/no-avatar.jpg">
+</ng-template>
